@@ -22,7 +22,7 @@
               <div class="row">
                 <div class="col-md-6 col-sm-6">
                   <div class="product-main-image">
-                    <img src="/build/front/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="/build/front/img/products/model7.jpg">
+                    <img src="{{ url('/img/products', $product->img) }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="{{ url('/img/products', $product->img) }}">
                   </div>
                   <div class="product-other-images">
                     <a href="/build/front/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="/build/front/img/products/model3.jpg"></a>

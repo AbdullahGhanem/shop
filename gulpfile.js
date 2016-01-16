@@ -7,6 +7,7 @@ elixir(function(mix) {
         "../admin/css/font-awesome.css",
         "../admin/css/simple-line-icons.css",
         "../admin/css/bootstrap.css",
+        "../admin/css/fileinput.css",
         "../admin/css/uniform.default.css",
         "../admin/css/ltr/bootstrap-switch.css",
         "../admin/css/ltr/components.css",
@@ -21,6 +22,7 @@ elixir(function(mix) {
         "../admin/css/font-awesome.css",
         "../admin/css/simple-line-icons.css",
         "../admin/css/bootstrap-rtl.css",
+        "../admin/css/fileinput.css",
         "../admin/css/uniform.default.css",
         "../admin/css/rtl/bootstrap-switch-rtl.css",
         "../admin/css/rtl/components-md-rtl.css",
@@ -44,6 +46,7 @@ elixir(function(mix) {
         '../admin/js/bootstrap-switch.js',
         '../admin/js/metronic.js',
         '../admin/js/layout.js',
+        '../admin/js/fileinput.js',
     ],'public/back/js/admin.js');  
 
     // ******************************** front end shop ************************************

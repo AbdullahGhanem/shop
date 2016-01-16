@@ -39,7 +39,7 @@
 		<div class="portlet-body form">
 			<!-- BEGIN FORM-->
 			{!! Form::model($category, ['method' => 'PATCH','action' => ['CategoryController@update', $category->id ]]) !!}
-				@include('back.category.form',['submiteText' => 'update'])
+				@include('back.category.formEdit',['submiteText' => 'update'])
 			{!! Form::close() !!}
 			<!-- END FORM-->
 		</div>

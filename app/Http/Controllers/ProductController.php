@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
+        $product = Product::create([
             'en'  => [
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
@@ -55,10 +56,20 @@ class ProductController extends Controller
             ],
             'price' => $request->input('price'),
             'amount' => $request->input('amount')
-        ];
+        ]);
 
-        $product = Product::create($data);
+        if($request->hasFile('img'))
+        {
+  
+            $image = $request->file('img');
+            $filename  = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('img/products/' . $filename);
+ 
+                Image::make($image->getRealPath())->resize(375, 500)->save($path);
 
+            $product->img = $filename ;
+            $product->save();
+        }
         $product->categories()->attach($request->input('category_list'));
 
         flash()->success('your product is created');

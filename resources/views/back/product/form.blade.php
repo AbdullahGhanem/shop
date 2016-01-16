@@ -1,7 +1,7 @@
 <div class="form-horizontal">
 	<div class="form-body">
 		<div class="form-group">
-			<label class="col-md-3 control-label">Title :</label>
+			<label class="col-md-3 control-label">Title (E) :</label>
 			<div class="col-md-6">
 				<div class="input-icon right">
 					<i class="fa fa-microphone"></i>
@@ -10,7 +10,7 @@
 			</div>
 		</div>	
 		<div class="form-group">
-			<label class="col-md-3 control-label">arabic Title :</label>
+			<label class="col-md-3 control-label">Title (A) :</label>
 			<div class="col-md-6">
 				<div class="input-icon right">
 					<i class="fa fa-microphone"></i>
@@ -39,10 +39,8 @@
 		<div class="form-group">
 			<label class="col-md-3 control-label">image :</label>
 			<div class="col-md-6">
-				<div class="input-icon right">
-					<i class="fa fa-microphone"></i>
-					{!! Form::text('img', null, ['class' => 'form-control']) !!}
-				</div>
+					{!! Form::file('img', ['id' => 'input-1']) !!}
+
 			</div>
 		</div>	
 		<div class="form-group">
@@ -69,13 +67,13 @@
 			</div>
 		</div>		
 		<div class="form-group">
-			<label class="col-md-3 control-label">Description</label>
+			<label class="col-md-3 control-label">Description (E) :</label>
 			<div class="col-md-6">
 				{!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label">Description</label>
+			<label class="col-md-3 control-label">Description (A) :</label>
 			<div class="col-md-6">
 				{!! Form::textarea('description_ar', null, ['class' => 'form-control']) !!}
 			</div>
@@ -89,3 +87,7 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$("#input-1").fileinput({'showUpload':false, 'previewFileType':'any'});
+
+</script>

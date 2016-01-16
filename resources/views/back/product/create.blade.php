@@ -38,7 +38,7 @@
 		</div>
 		<div class="portlet-body form">
 			<!-- BEGIN FORM-->
-			{!! Form::open(['route' => 'admin.product.store']) !!}
+			{!! Form::open(['route' => 'admin.product.store', 'enctype' => 'multipart/form-data']) !!}
 				@include('back.product.form',['submiteText' => 'Create'])
 			{!! Form::close() !!}
 			<!-- END FORM-->
