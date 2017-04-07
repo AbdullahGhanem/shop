@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->json('informations');    
             $table->boolean('sale');
             $table->boolean('new');
-            $table->string('img');
+            $table->string('img')->default('new-product.jpg');
             $table->timestamps();
         });
 
@@ -45,8 +45,8 @@ class CreateProductsTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::drop('products');
-        Schema::drop('product_translationsaa');
+            Schema::drop('product_translationsaa');
+            Schema::drop('products');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

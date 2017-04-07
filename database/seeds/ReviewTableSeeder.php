@@ -23,7 +23,7 @@ class ReviewTableSeeder extends Seeder {
 				'product_id'  => $faker->randomElement($proId),
 				'user_id'     => $faker->randomElement($userId),
 				'rating'      => $faker->numberBetween(0,5),
-				'review' => $faker->paragraph(6),
+				'review' 	  => $faker->paragraph(6),
 
 				]);
 		}

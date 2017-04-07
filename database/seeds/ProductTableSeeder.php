@@ -21,11 +21,13 @@ class ProductTableSeeder extends Seeder {
 
 		foreach (range(1,10) as $index) {
 			$title = $faker->sentence(2);
+			$desc  = $faker->paragraph(6);
 			Product::create([
-				'price'  		=> 10.99,
-				'amount'  		=> 10,
-				'en'      => ['title' => $title],
-				'ar'      => ['title' => 'ar'.$title],
+				'price'  	=> 10.99,
+				'amount'  	=> 10,
+				'img'  		=> 'product.jpg',
+				'en'      	=> ['title' => $title, 'description' => $desc ],
+				'ar'      	=> ['title' => 'ararbic '.$title , 'description' => 'arabic ' . $desc],
 			]);
 		}
 	}
