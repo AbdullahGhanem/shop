@@ -6,9 +6,11 @@
 
 @section('content')
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Store</a></li>
-            <li class="active">Cool green dress with red bell</li>
+            <li><a href="{{ url('/') }}">Home</a></li>  
+            @foreach($product->categories as $category)
+              <li><a href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a></li>
+            @endforeach
+            <li class="active">{{ $product->name}}</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
@@ -24,11 +26,12 @@
                   <div class="product-main-image">
                     <img src="{{ url('/img/products', $product->img) }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="{{ url('/img/products', $product->img) }}">
                   </div>
-                  <div class="product-other-images">
+                  {{-- gallary --}}
+{{--                   <div class="product-other-images">
                     <a href="/build/front/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="/build/front/img/products/model3.jpg"></a>
                     <a href="/build/front/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="/build/front/img/products/model4.jpg"></a>
                     <a href="/build/front/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="/build/front/img/products/model5.jpg"></a>
-                  </div>
+                  </div> --}}
                 </div>
                 <div class="col-md-6 col-sm-6">
                   <h1>{{ $product->title }}</h1>
@@ -38,13 +41,13 @@
                       <em>$<span>62.00</span></em>
                     </div>
                     <div class="availability">
-                      Availability: <strong>In Stock</strong>
+                      Availability: <strong>@if($product->amount > 0 )In Stock @else finshed @endif</strong>
                     </div>
                   </div>
                   <div class="description">
                     <p>{{ $product->description }}</p>
                   </div>
-                  <div class="product-page-options">
+{{--                   <div class="product-page-options">
                     <div class="pull-left">
                       <label class="control-label">Size:</label>
                       <select class="form-control input-sm">
@@ -61,7 +64,7 @@
                         <option>Black</option>
                       </select>
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="product-page-cart">
                     <div class="product-quantity">
                         <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
@@ -86,39 +89,11 @@
                 <div class="product-page-content">
                   <ul id="myTab" class="nav nav-tabs">
                     <li><a href="#Description" data-toggle="tab">Description</a></li>
-                    <li><a href="#Information" data-toggle="tab">Information</a></li>
                     <li class="active"><a href="#Reviews" data-toggle="tab">Reviews ({{$product->reviews->count()}})</a></li>
                   </ul>
                   <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade" id="Description">
-                      <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore. </p>
-                    </div>
-                    <div class="tab-pane fade" id="Information">
-                      <table class="datasheet">
-                        <tr>
-                          <th colspan="2">Additional features</th>
-                        </tr>
-                        <tr>
-                          <td class="datasheet-features-type">Value 1</td>
-                          <td>21 cm</td>
-                        </tr>
-                        <tr>
-                          <td class="datasheet-features-type">Value 2</td>
-                          <td>700 gr.</td>
-                        </tr>
-                        <tr>
-                          <td class="datasheet-features-type">Value 3</td>
-                          <td>10 person</td>
-                        </tr>
-                        <tr>
-                          <td class="datasheet-features-type">Value 4</td>
-                          <td>14 cm</td>
-                        </tr>
-                        <tr>
-                          <td class="datasheet-features-type">Value 5</td>
-                          <td>plastic</td>
-                        </tr>
-                      </table>
+                      <p>{{ $product->description }}</p>
                     </div>
                     @include('product.layout.reviews')
                   </div>

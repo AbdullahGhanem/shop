@@ -1,8 +1,13 @@
 <?php
 
 Route::get('/', function () {
+
+
 	$products = App\Product::all();
-    return view('home', compact('products'));
+    $category1 = App\Category::find(1);
+    $category2 = App\Category::find(2);
+
+    return view('home', compact('products', 'category1', 'category2'));
 });
 
 // Authentication routes...

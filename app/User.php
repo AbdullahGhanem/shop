@@ -64,4 +64,21 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\Order');
     }
+    
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($user){
+            $user->username = str_slug($user->name);
+            $latestSlug = static::whereRaw("username RLike '^{$user->username}(-[0-9]*)?$'")
+                            ->latest('id')
+                            ->pluck('username');
+            if($latestSlug) {
+                $pieces = explode('-', $latestSlug);
+                $number = intval(end($pieces));
+                $user->username .= '-' . ($number + 1);
+            }
+        });
+    }
 }

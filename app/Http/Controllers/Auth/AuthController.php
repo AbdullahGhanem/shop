@@ -47,11 +47,9 @@ class AuthController extends Controller {
      */
     protected function validator(array $data)
     {
-        $data['username'] = str_slug($data['username'], "-");
 
         return Validator::make($data, [
             'name'     => 'required|max:255',
-            'username' => 'required|max:50|unique:users',
             'email'    => 'required|email|max:255|unique:users',
             'reffer'   => 'max:255',
             'password' => 'required|confirmed|min:6',
@@ -68,7 +66,6 @@ class AuthController extends Controller {
     {
             $user = User::create([
                 'name'     => $data['name'],
-                'username' => str_slug($data['username'], "-"),
                 'email'    => $data['email'],
                 'password' => bcrypt($data['password']),
             ]);

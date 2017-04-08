@@ -4,7 +4,6 @@
         <img src="{{ url('/img/products', $product->img) }}" class="img-responsive" alt="Berry Lace Dress">
         <div>
           <a href="{{ url('/img/products', $product->img) }}" class="btn btn-default fancybox-button">Zoom</a>
-          <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
         </div>
       </div>
       <h3><a href="{{ url('product', $product->slug) }}">{{ $product->title }}</a></h3>
