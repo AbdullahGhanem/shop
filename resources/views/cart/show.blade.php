@@ -32,23 +32,21 @@
               <tr>
                 <th class="goods-page-image">Image</th>
                 <th class="goods-page-description">Description</th>
-                <th class="goods-page-ref-no">Ref No</th>
                 <th class="goods-page-quantity">Quantity</th>
                 <th class="goods-page-price">Unit price</th>
                 <th class="goods-page-total" colspan="2">Total</th>
               </tr>
             @foreach($cart as $product)
+
+              <?php $productInCard = App\product::find($product->id); ?>
               <tr>
                 <td class="goods-page-image">
-                  <a href="#"><img src="build/front/img/products/model3.jpg" alt="Berry Lace Dress"></a>
+                  <a href="{{ url('product', $productInCard->slug) }}"><img src="{{ url('/img/products', $productInCard->img) }}" alt="Berry Lace Dress"></a>
+
                 </td>
                 <td class="goods-page-description">
-                  <h3><a href="#">Cool green dress with red bell</a></h3>
-                  <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                  <em>More info is here</em>
-                </td>
-                <td class="goods-page-ref-no">
-                  javc2133
+                  <h3><a href="{{ url('product', $productInCard->slug) }}">{{ $productInCard->title }}</a></h3>
+                  <em>{{ $productInCard->description }}</em>
                 </td>
                 <td class="goods-page-quantity">
                   <div class="product-quantity">
@@ -72,23 +70,23 @@
 
             <div class="shopping-total">
               <ul>
-                <li>
+{{--                 <li>
                   <em>Sub total</em>
-                  <strong class="price"><span>$</span>47.00</strong>
+                  <strong class="price"><span>$</span>488.00</strong>
                 </li>
                 <li>
                   <em>Shipping cost</em>
                   <strong class="price"><span>$</span>3.00</strong>
-                </li>
+                </li> --}}
                 <li class="shopping-total-price">
                   <em>Total</em>
-                  <strong class="price"><span>$</span>50.00</strong>
+                  <strong class="price"><span>$</span>{{ $total }}</strong>
                 </li>
               </ul>
             </div>
           </div>
           <a class="btn btn-default" href="{{ url('/') }}">Continue shopping <i class="fa fa-shopping-cart"></i></a>
-          <a class="btn btn-primary" href="">Checkout <i class="fa fa-check"></i></a>
+          <a class="btn btn-primary" href="{{ route('order.store')}}">Checkout <i class="fa fa-check"></i></a>
         </div>
       </div>
       <!-- END CONTENT -->

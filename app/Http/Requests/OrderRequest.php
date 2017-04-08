@@ -13,7 +13,7 @@ class OrderRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class OrderRequest extends Request
     public function rules()
     {
         return [
-            //
+            'address' => 'required|min:5',
+            'phone'  => 'required|min:6'
         ];
     }
 }

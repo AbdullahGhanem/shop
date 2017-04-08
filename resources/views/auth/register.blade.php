@@ -1,6 +1,6 @@
 @extends('master')
 
-	@section('content')
+@section('content')
 	<ul class="breadcrumb">
 		<li><a href="{{ url('/') }}">Home</a></li>
 		<li class="active">Register</li>

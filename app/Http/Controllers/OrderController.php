@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\OrderRequest;
 use App\Http\Controllers\Controller;
 
 use Cart;
@@ -21,23 +22,18 @@ class OrderController extends Controller
         return view('admin.order.index', compact('orders'));
     }
 
+
     public function create()
     {
-        $carts = Cart::content();
-        if ( Cart::count() == 0){
-            return back();
-        }
-
-        return view('order.create', compact('carts'));
+        return view('order.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
         if ( Cart::count() > 0){  
             DB::transaction(function () use ($request) {
@@ -48,7 +44,7 @@ class OrderController extends Controller
                     'address' => $request->input('address'),
                     'phone'   => $request->input('phone'),
                     'total'   => Cart::total(),
-                    ]);
+                ]);
 
                 foreach ($carts as $cart) {
                     Orderdata::create([
@@ -61,8 +57,10 @@ class OrderController extends Controller
                 }
                 Cart::destroy();
             });
-            return redirect('order');
+            flash()->success('thanks for the deal');
+            return redirect('orders');
         } else {
+            flash()->error('your order has failen');
             return redirect('/');
         }
 
@@ -74,7 +72,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function orders()
     {
         $orders = Auth::user()->orders;
         return view('order.show', compact('orders'));

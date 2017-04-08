@@ -30,10 +30,10 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 //cart
 Route::resource('cart','CartController');
 
-//cart
+//Order
 Route::get('order/create',['as' => 'order.create', 'uses' => 'OrderController@create']);
-Route::post('order/create',['as' => 'order.store', 'uses' => 'OrderController@store']);
-Route::get('order',['as' => 'order.show', 'uses' => 'OrderController@show']);
+Route::post('order',['as' => 'order.store', 'uses' => 'OrderController@store']);
+Route::get('orders',['as' => 'orders', 'uses' => 'OrderController@orders']);
 Route::get('order/{id}',['as' => 'order.contant', 'uses' => 'OrderController@contant']);
 
 #search routes
